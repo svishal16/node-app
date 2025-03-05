@@ -5,6 +5,10 @@ pipeline {
         KEYSTORE_DIR="./cert_mgmt/keystores"
         CERT_DIR="./cert_mgmt/certificates"
         KEYSTORE="test01Keystore.jks"
+        PKCS_KEYSTORE_DIR="./certs/p12_cert"
+        PKCS_KEYSTORE="test01Keystore.p12"
+        PEM_KEYSTORE_DIR="./certs/pem_cert"
+        PEM_KEYSTORE="test01Keystore.pem"
         STOREPASS="admin123"
         KEYPASS="admin123"
         ALIAS_PREFIX="vishal_dev"
@@ -37,6 +41,13 @@ pipeline {
             steps{
                 sh 'chmod +x ./cert_mgmt/cert_exp.sh'
                 sh './cert_mgmt/cert_exp.sh'
+            }
+        }
+
+        stage('Export to PKCS12') {
+            steps{
+                sh 'chmod +x ./cert_mgmt/export.sh'
+                sh './cert_mgmt/export.sh'
             }
         }
         
