@@ -6,7 +6,7 @@ pipeline {
         CERT_DIR="./cert_mgmt/certificates"
         KEYSTORE="test01Keystore.jks"
         PKCS_KEYSTORE_DIR="./certs/p12_cert"
-        // PKCS_KEYSTORE="test01Keystore.p12"
+        PKCS_KEYSTORE="test01Keystore.p12"
         PEM_KEYSTORE_DIR="./certs/pem_cert"
         PEM_KEYSTORE="test01Keystore.pem"
         STOREPASS="admin123"
