@@ -1,5 +1,8 @@
 #!/bin/bash
 
+mkdir -p ./certs/p12_cert
+mkdir -p ./certs/pem_cert
+
 # Export the certificate to a .cer file
 keytool -exportcert -keystore $KEYSTORE_DIR/$KEYSTORE -alias $CERT_ALIAS -file "${PKCS_KEYSTORE_DIR}/${CERT_ALIAS}.cer" -storepass $STOREPASS
 
