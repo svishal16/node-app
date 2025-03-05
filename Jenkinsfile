@@ -2,6 +2,13 @@ pipeline {
     agent any
 
     environment {
+        KEYSTORE_DIR="./cert_mgmt/keystores"
+        CERT_DIR="./cert_mgmt/certificates"
+        KEYSTORE="test01Keystore.jks"
+        STOREPASS="admin123"
+        KEYPASS="admin123"
+        ALIAS_PREFIX="vishal_dev"
+
         AWS_REGION = 'us-east-1'  // Replace with your AWS region
         ECR_REPO_NAME = 'node-app-repo'  // Replace with your ECR repository name
         ECS_CLUSTER_NAME = 'node-app-cluster'  // Replace with your ECS cluster name
@@ -16,6 +23,20 @@ pipeline {
         stage('Fetch code') {
             steps {
                git branch: 'main', url: 'https://github.com/svishal16/node-app.git'
+            }
+        }
+
+        stage('Generate Certificates') {
+            steps{
+                sh 'chmod +x ./cert_mgmt/gen_cert.sh'
+                sh './cert_mgmt/gen_cert.sh'
+            }
+        }
+
+        stage('Checking Certificate Expiry') {
+            steps{
+                sh 'chmod +x ./cert_mgmt/cert_exp.sh'
+                sh './cert_mgmt/cert_exp.sh'
             }
         }
         
