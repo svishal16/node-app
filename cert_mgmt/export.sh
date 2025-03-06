@@ -20,6 +20,6 @@ openssl x509 -inform der -in "${PKCS_KEYSTORE_DIR}/${CERT_ALIAS}.cer" -out "${PE
 
 
 
-keytool -importkeystore -srckeystore $KEYSTORE_DIR/$KEYSTORE -srcstoretype JKS -destkeystore $PKCS_KEYSTORE_DIR/$PKCS_KEYSTORE -deststoretype PKCS12 -srcstorepass $STOREPASS -deststorepass $STOREPASS
+keytool -importkeystore -srckeystore $KEYSTORE_DIR/$KEYSTORE -srcstoretype PKCS12 -destkeystore $PKCS_KEYSTORE_DIR/$PKCS_KEYSTORE -deststoretype PKCS12 -srcstorepass $STOREPASS -deststorepass $STOREPASS
 
 openssl pkcs12 -in $PKCS_KEYSTORE_DIR/$PKCS_KEYSTORE -nocerts -out $PEM_KEYSTORE_DIR/$PEM_KEYSTORE
