@@ -5,12 +5,15 @@ FROM node:latest
 WORKDIR /app
 
 # Copy the package.json and install dependencies
-COPY package.json .
+COPY package.json package-lock.json ./
 
 RUN npm install
 
 # Copy the rest of the application
 COPY . .
+
+# Copy the PEM certificate into the container
+COPY ./certs/dec_cert/test01Keystore.pem /app/certs/dec_cert/test01Keystore.pem
 
 # Expose port 3000
 EXPOSE 3000
