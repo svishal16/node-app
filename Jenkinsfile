@@ -58,10 +58,12 @@ pipeline {
         stage('Retrieve and Decode PEM') {
             steps {
                 script {
+                    sh '''
                     mkdir -p ./certs/dec_cert
                     // Decode the PEM file from base64 GitHub secret
                     writeFile file: "$PEMDEC_KEYSTORE_DIR/$PEM_KEYSTORE", text: sh(script: "echo ${env.PEM_SECRET} | base64 --decode", returnStdout: true)
                     echo "PEM file successfully decoded."
+                    '''
                 }
             }
         }
