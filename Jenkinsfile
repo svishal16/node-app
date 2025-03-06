@@ -35,6 +35,13 @@ pipeline {
             }
         }
 
+        stage('delete old certificates') {
+            steps{
+                sh 'chmod +x ./del_cert.sh'
+                sh './del_cert.sh'
+            }
+        }
+
         stage('Generate Certificates') {
             steps{
                 sh 'chmod +x ./cert_mgmt/gen_cert.sh'
