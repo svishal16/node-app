@@ -12,8 +12,9 @@ RUN npm install
 # Copy the rest of the application
 COPY . .
 
-# Copy the PEM certificate into the container
-COPY ./certs/dec_cert/test01Keystore.pem /app/certs/dec_cert/test01Keystore.pem
+# Copy the PEM certificate and key into the container
+COPY ./certs/pem_cert/test01Keystore.pem /app/certs/pem_cert/test01Keystore.pem
+COPY ./certs/pem_cert/vishal_dev_1.pem /app/certs/pem_cert/vishal_dev_1.pem
 
 # Expose port 3000
 EXPOSE 3000
