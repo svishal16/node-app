@@ -8,8 +8,8 @@ const port = 3000;
 app.use(express.static(path.join(__dirname, 'public')));
 
 const options = {
-  key: fs.readFileSync('./certs/dec_cert/test01Keystore.pem'), // Private key
-  cert: fs.readFileSync('./certs/dec_cert/test01Keystore.pem'), // SSL certificate
+  key: fs.readFileSync('./certs/pem_cert/test01Keystore.pem'), // Private key
+  cert: fs.readFileSync('./certs/pem_cert/vishal_dev_1.pem'), // SSL certificate
 };
 
 app.get('/', (req, res) => {

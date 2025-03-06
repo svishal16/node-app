@@ -8,7 +8,7 @@ pipeline {
         PKCS_KEYSTORE_DIR="./certs/p12_cert"
         PKCS_KEYSTORE="test01Keystore.p12"
         PEM_KEYSTORE_DIR="./certs/pem_cert"
-        PEMDEC_KEYSTORE_DIR="./certs/dec_cert"
+        // PEMDEC_KEYSTORE_DIR="./certs/dec_cert"
         PEM_KEYSTORE="test01Keystore.pem"
         STOREPASS="admin123"
         KEYPASS="admin123"
@@ -25,6 +25,7 @@ pipeline {
         moveinRegistry = "https://296062569588.dkr.ecr.us-east-1.amazonaws.com"
 
         PEM_SECRET = credentials('PEM_FILE')  // GitHub secret containing the base64 encoded PEM file
+        GITHUB_TOKEN = credentials('Git-Token')
     }
 
     stages {
@@ -48,24 +49,33 @@ pipeline {
             }
         }
 
-        stage('Export to PKCS12') {
+        stage('Export to PEM') {
             steps{
                 sh 'chmod +x ./cert_mgmt/export.sh'
                 sh './cert_mgmt/export.sh'
             }
         }
 
-        stage('Retrieve and Decode PEM') {
+        // stage('Retrieve and Decode PEM') {
+        //     steps {
+        //         script {
+        //             sh 'mkdir -p ./certs/dec_cert'
+        //             // Decode the PEM file from base64 GitHub secret
+        //             writeFile file: "$PEMDEC_KEYSTORE_DIR/$PEM_KEYSTORE", text: sh(script: "echo ${env.PEM_SECRET} | base64 --decode", returnStdout: true)
+        //             echo "PEM file successfully decoded."
+        //         }
+        //     }
+        // }
+        
+        stage('Commit and Push Changes') {
             steps {
                 script {
-                    sh 'mkdir -p ./certs/dec_cert'
-                    // Decode the PEM file from base64 GitHub secret
-                    writeFile file: "$PEMDEC_KEYSTORE_DIR/$PEM_KEYSTORE", text: sh(script: "echo ${env.PEM_SECRET} | base64 --decode", returnStdout: true)
-                    echo "PEM file successfully decoded."
+                    sh 'chmod +x ./git_updt.sh'
+                    sh './git_updt.sh'
                 }
             }
         }
-        
+
         stage('Build App Image') {
             steps {
                 script {
