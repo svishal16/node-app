@@ -19,7 +19,7 @@ keytool -exportcert -keystore $KEYSTORE_DIR/$KEYSTORE -alias $CERT_ALIAS -file "
 openssl x509 -inform der -in "${PKCS_KEYSTORE_DIR}/${CERT_ALIAS}.cer" -out "${PEM_KEYSTORE_DIR}/${CERT_ALIAS}.pem"
 
 
-
-keytool -importkeystore -srckeystore $KEYSTORE_DIR/$KEYSTORE -srcstoretype PKCS12 -alias $CERT_ALIAS -destkeystore $PKCS_KEYSTORE_DIR/$PKCS_KEYSTORE -deststoretype PKCS12 -srcstorepass $STOREPASS -deststorepass $STOREPASS
+export P12_PASSWORD="admin123"
+keytool -importkeystore -srckeystore $KEYSTORE_DIR/$KEYSTORE -srcstoretype PKCS12 -alias $CERT_ALIAS -destkeystore $PKCS_KEYSTORE_DIR/$PKCS_KEYSTORE -deststoretype PKCS12 -srcstorepass $STOREPASS -deststorepass $STOREPASS -passin ${env:P12_PASSWORD}
 
 openssl pkcs12 -in $PKCS_KEYSTORE_DIR/$PKCS_KEYSTORE -nocerts -out $PEM_KEYSTORE_DIR/$PEM_KEYSTORE
