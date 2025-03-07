@@ -15,7 +15,7 @@ COPY . .
 # Copy the PEM certificate and key into the container
 RUN mkdir -p /app/certs
 COPY ./certs/pem_cert/test01Keystore.pem /app/certs/test01Keystore.pem
-COPY ./certs/pem_cert/vishal_dev_1.pem /app/certs/vishal-dev.com_1.pem
+COPY ./certs/pem_cert/vishal-dev.com_1.pem /app/certs/vishal-dev.com_1.pem
 
 # Expose port 3000
 EXPOSE 3000
