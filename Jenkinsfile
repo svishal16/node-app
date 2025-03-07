@@ -13,7 +13,7 @@ pipeline {
         STOREPASS="admin123"
         KEYPASS="admin123"
         ALIAS_PREFIX="vishal-dev.com"
-        CERT_ALIAS="vishal_dev_1"
+        CERT_ALIAS="vishal-dev.com_1"
 
         AWS_REGION = 'us-east-1'  // Replace with your AWS region
         ECR_REPO_NAME = 'node-app-repo'  // Replace with your ECR repository name
