@@ -18,7 +18,7 @@ COPY ./certs/pem_cert/test01Keystore.pem /app/certs/test01Keystore.pem
 COPY ./certs/pem_cert/vishal_dev_1.pem /app/certs/vishal_dev_1.pem
 
 # Expose port 3000
-EXPOSE 443
+EXPOSE 3000
 
 # Run the Node.js app
 CMD ["npm", "start"]
