@@ -13,11 +13,12 @@ RUN npm install
 COPY . .
 
 # Copy the PEM certificate and key into the container
-COPY ./certs/pem_cert/test01Keystore.pem /app/certs/pem_cert/test01Keystore.pem
-COPY ./certs/pem_cert/vishal_dev_1.pem /app/certs/pem_cert/vishal_dev_1.pem
+RUN mkdir -p /app/certs
+COPY ./certs/pem_cert/test01Keystore.pem /app/certs/test01Keystore.pem
+COPY ./certs/pem_cert/vishal_dev_1.pem /app/certs/vishal_dev_1.pem
 
 # Expose port 3000
-EXPOSE 3000
+EXPOSE 443
 
 # Run the Node.js app
 CMD ["npm", "start"]
