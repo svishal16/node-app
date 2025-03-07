@@ -75,7 +75,7 @@ function renew_certificate() {
     # fi
 
     # Back up the old keystore before renewing
-    cp $KEYSTORE_DIR/$KEYSTORE "$KEYSTORE_DIR/$KEYSTORE.bkp"
+    # cp $KEYSTORE_DIR/$KEYSTORE "$KEYSTORE_DIR/$KEYSTORE.bkp"
 
     # Import the new certificate into the JKS file
     # keytool -importcert -keystore $KEYSTORE_DIR/$KEYSTORE -storepass $STOREPASS -file "$NEW_CERT_FILE" -alias "$alias" -noprompt
