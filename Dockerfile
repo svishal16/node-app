@@ -17,7 +17,7 @@ RUN mkdir -p /app/certs
 COPY ./certs/pem_cert/test01Keystore.pem /app/certs/test01Keystore.pem
 COPY ./certs/pem_cert/vishal-dev.com_1.pem /app/certs/vishal-dev.com_1.pem
 
-# Expose port 3000
+# Expose port 
 EXPOSE 3000
 
 # Run the Node.js app

@@ -2,7 +2,6 @@
 
 echo "STARTING CERTIFICATE EXPIRY CHECK SCRIPT"
 
-# Function to check certificate expiry
 function check_certificate_expiry() {
     local alias="$1"
     echo "Checking expiry of certificate with alias: $alias"
@@ -59,7 +58,6 @@ function generate_new_certificate() {
     fi
 }
 
-# Function to renew the certificate
 function renew_certificate() {
     local alias="$1"
     echo "Renewing the certificate with alias: $alias..."
@@ -92,7 +90,6 @@ function renew_certificate() {
     fi
 }
 
-# Main logic: Iterate through all aliases in the JKS file
 aliases=$(keytool -list -keystore $KEYSTORE_DIR/$KEYSTORE -storepass $STOREPASS -v | grep "Alias name:" | awk '{print $3}')
 echo $aliases
 
