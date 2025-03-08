@@ -20,16 +20,16 @@ pipeline {
         ALIAS_PREFIX="vishal-dev.com"
         CERT_ALIAS="vishal-dev.com_1"
 
-        AWS_REGION = 'us-east-1'  // Replace with your AWS region
-        ECR_REPO_NAME = 'node-app-repo'  // Replace with your ECR repository name
-        ECS_CLUSTER_NAME = 'node-app-cluster'  // Replace with your ECS cluster name
-        ECS_SERVICE_NAME = 'node-app-service'  // Replace with your ECS service name
-        ECS_TASK_DEFINITION = 'node-app-task'  // Replace with your ECS task definition
+        AWS_REGION = 'us-east-1'  
+        ECR_REPO_NAME = 'node-app-repo'  
+        ECS_CLUSTER_NAME = 'node-app-cluster'  
+        ECS_SERVICE_NAME = 'node-app-service' 
+        ECS_TASK_DEFINITION = 'node-app-task'  
         registryCredential = 'ecr:us-east-1:awscreds'
         appRegistry = "296062569588.dkr.ecr.us-east-1.amazonaws.com/node-app-repo"
         moveinRegistry = "https://296062569588.dkr.ecr.us-east-1.amazonaws.com"
 
-        PEM_SECRET = credentials('PEM_FILE')  // GitHub secret containing the base64 encoded PEM file
+        PEM_SECRET = credentials('PEM_FILE')  // GitHub secret 
         GITHUB_TOKEN = credentials('Git-Token')
     }
 
@@ -72,7 +72,6 @@ pipeline {
         //     steps {
         //         script {
         //             sh 'mkdir -p ./certs/dec_cert'
-        //             // Decode the PEM file from base64 GitHub secret
         //             writeFile file: "$PEMDEC_KEYSTORE_DIR/$PEM_KEYSTORE", text: sh(script: "echo ${env.PEM_SECRET} | base64 --decode", returnStdout: true)
         //             echo "PEM file successfully decoded."
         //         }
